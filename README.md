@@ -1,4 +1,4 @@
-# React Redux Boilerplate
+# Open Platform
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ $ open build/config.js
 
 ```js
 const config = {
-  title: '管理系统',
+  title: '产品中心开放平台',
   inputBase: './src', // 源代码目录
   outputBase: './dist', // 构建输出目录
   prod: {
