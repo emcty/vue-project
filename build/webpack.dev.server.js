@@ -33,14 +33,6 @@ const compiler = webpack(merge.smart(webpackBaseConfig, {
   cache: true,
   debug: true,
   devtool: 'cheap-module-inline-source-map',
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['react-hot']
-      }
-    ]
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

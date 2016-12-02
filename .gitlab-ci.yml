@@ -1,0 +1,30 @@
+before_script:
+  #服务端SVN的仓库地址
+  - export SVN_REPO=""
+  - node -v
+  - npm -v
+  - svn --version
+  - npm install --registry=https://registry.npm.taobao.org
+
+cache:
+  key: "$CI_PROJECT_PATH"
+  untracked: true
+  paths:
+    - node_modules/
+    - dist/
+
+development:
+  stage: build
+  script:
+    - ./scripts/build.sh
+  only:
+    - /^feature-.+$/
+
+production:
+  stage: deploy
+  script:
+    - NODE_ENV=production ./scripts/build.sh -r
+    # - ./scripts/deploy.exp --host xxx.xxx.xxx.xxx --password xxxxxx --script /app/javaCode/branch_name/build.sh
+  only:
+    - /^(?:release|hotfix)-.+$/
+    - /^master$/

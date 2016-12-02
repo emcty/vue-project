@@ -19,23 +19,16 @@ let extractCSS = new ExtractTextPlugin(`style${chunkhash}.css`, {
   allChunks: !debug
 });
 
-let extractVendorCSS = new ExtractTextPlugin(`vendor${chunkhash}.css`, {
-  allChunks: !debug
-});
-
 module.exports = {
   entry: {
     main: [path.resolve(inputBase, 'main.js')],
     vendor: [
       'babel-polyfill',
       'whatwg-fetch',
-      'react',
-      'react-dom',
-      'react-router',
-      'react-router-redux',
-      'react-redux',
-      'redux',
-      'redux-thunk',
+      'vue',
+      'vue-router',
+      'vuex',
+      'vuex-router-sync',
       'nprogress'
     ]
   },
@@ -47,26 +40,13 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.vue$/,
+        loader: 'vue'
+      },
+      {
+        test: /\.js/,
         exclude: /node_modules/,
-        include: path.resolve(inputBase),
         loader: 'babel'
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loader: extractCSS.extract('style', [
-          `css?modules&camelCase${!debug ? '&minimize' : '&sourceMap'}`,
-          'postcss'
-        ])
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        loader: extractVendorCSS.extract('style', [
-          `css?${!debug ? 'minimize' : 'sourceMap'}`,
-          'postcss'
-        ])
       },
       {
         test: /\.(?:woff2?|eot|ttf)$/,
@@ -78,8 +58,11 @@ module.exports = {
       }
     ]
   },
-  postcss() {
-    return [
+  vue: {
+    loaders: {
+      css: extractCSS.extract('style', [`css?${!debug ? '&minimize' : '&sourceMap'}`, 'postcss'])
+    },
+    postcss: [
       cssnext({
         features: {
           autoprefixer: {
@@ -87,11 +70,11 @@ module.exports = {
           }
         }
       })
-    ];
+    ]
   },
   resolve: {
     root: path.resolve(inputBase),
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.vue']
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -104,15 +87,9 @@ module.exports = {
       verbose: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      async: true,
-      children: true,
-      minChunks: 2
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
       minChunks: Infinity
     }),
-    extractCSS,
-    extractVendorCSS
+    extractCSS
   ]
 }

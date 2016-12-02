@@ -1,7 +1,7 @@
 'use strict';
 
 const config = {
-  title: '管理系统',
+  title: '产品中心开放平台',
   inputBase: './src',
   outputBase: './dist',
   prod: {

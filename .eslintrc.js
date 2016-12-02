@@ -12,10 +12,7 @@ module.exports = {
       experimentalObjectRestSpread: true
     }
   },
-  plugins: [
-    'react'
-  ],
-  extends: 'plugin:react/recommended',
+  extends: 'vue',
   rules: {
     'comma-dangle': ERROR,
     'no-console': ERROR,
