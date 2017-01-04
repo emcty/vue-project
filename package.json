@@ -70,7 +70,6 @@
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
     "lru-cache": "^4.0.2",
-    "merge-stream": "^1.0.1",
     "nprogress": "^0.2.0",
     "sequelize": "^3.28.0",
     "vue": "^2.1.8",

@@ -108,6 +108,8 @@ if (config.debug) {
   renderer = createRenderer(fs.readFileSync(bundlePath, 'utf8'));
 }
 
+router.use('/api', api.routes());
+
 // Vue with server-side rendering
 router.get('*', c2k(function (req, res){
   // 由于是以stream的方式输出，所以要设置下响应的内容类型
@@ -155,8 +157,6 @@ router.get('*', c2k(function (req, res){
     // 稍后记录日志
   });
 }));
-
-router.use('/api', api.routes(), api.allowedMethods());
 
 app
   .use(router.routes())
