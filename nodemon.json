@@ -1,0 +1,3 @@
+{
+  "watch": ["middlewares/", "models", "controllers/", "server.js", "common"]
+}

@@ -2,26 +2,16 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 
-const config = require('./config');
-
-const debug = process.env.NODE_ENV !== 'production';
-const inputBase = config.inputBase;
-const outputBase = config.outputBase;
-
-let filename = `[name]${debug ? '' : '-[hash:10]'}.[ext]`;
-let chunkhash = debug ? '' : '-[chunkhash:10]';
-
-let extractCSS = new ExtractTextPlugin(`style${chunkhash}.css`, {
-  allChunks: !debug
-});
+const DEBUG = process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testing';
+const inputBase = 'src/';
+const outputBase = 'public/';
+const filename = `[name]${DEBUG ? '' : '-[hash:10]'}.[ext]`;
 
 module.exports = {
   entry: {
-    main: [path.resolve(inputBase, 'main.js')],
+    main: path.resolve(inputBase, 'client-main.js'),
     vendor: [
       'babel-polyfill',
       'whatwg-fetch',
@@ -34,7 +24,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(outputBase),
-    publicPath: debug ? config.dev.publicPath : config.prod.publicPath
+    publicPath: '/assets/',
+    filename: '[name].[chunkhash:10].js'
   },
   recordsPath: path.resolve('.webpack-records.json'),
   module: {
@@ -60,7 +51,7 @@ module.exports = {
   },
   vue: {
     loaders: {
-      css: extractCSS.extract('style', [`css?${!debug ? '&minimize' : '&sourceMap'}`, 'postcss'])
+      css: 'postcss'
     },
     postcss: [
       cssnext({
@@ -75,21 +66,5 @@ module.exports = {
   resolve: {
     root: path.resolve(inputBase),
     extensions: ['', '.js', '.vue']
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new CleanWebpackPlugin([config.outputBase], {
-      root: path.resolve('./'),
-      verbose: true
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest'],
-      minChunks: Infinity
-    }),
-    extractCSS
-  ]
+  }
 }

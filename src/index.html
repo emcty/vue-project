@@ -9,7 +9,7 @@
   <% } %>
 </head>
 <body>
-  <div id="app"></div>
+  <!-- APP -->
   <% for (var i = 0, file; file = files.js[i]; i++) { %>
     <% if (i == 0) { %>
     <script><%= compilation.assets[file.slice(files.publicPath.length)].source() %></script>
