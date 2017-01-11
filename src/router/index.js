@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from 'views/Home';
 import Doc from 'views/Doc';
+import NotFound from 'views/NotFound';
 
 Vue.use(Router);
 
@@ -12,7 +13,7 @@ const router = new Router({
   },
   routes: [
     {
-      path: '/home',
+      path: '/',
       component: Home
     },
     {
@@ -20,8 +21,8 @@ const router = new Router({
       component: Doc
     },
     {
-      path: '/',
-      redirect: '/home'
+      path: '*',
+      component: NotFound
     }
   ]
 });

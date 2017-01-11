@@ -12,27 +12,21 @@ const serve = require('koa-static');
 const serialize = require('serialize-javascript');
 const serverRenderer = require('vue-server-renderer');
 const mount = require('koa-mount');
-const router = require('koa-router')();
 const c2k = require('koa-connect');
+const router = require('koa-router')();
 const LRU = require('lru-cache');
 
-const api = require('./controllers')(router);
-// const CSRF = require('koa-csrf');
-
 const config = require('./config');
+const logger = require('./common/logger');
+const errorHandler = require('./middlewares/errorHandler');
+
+const api = require('./controllers')(router);
 
 const app = module.exports = koa();
 
-app.use(function* (next) {
-  try {
-    yield* next;
-  } catch (err) {
-    this.status = err.status || 500;
-    this.body = err.message;
-    this.app.emit('error', err, this);
-  }
-});
+app.use(errorHandler());
 
+app.use(logger.access());
 app.use(compress());
 app.use(mount('/assets', serve('./public')));
 app.use(helmet.frameguard());
@@ -89,6 +83,8 @@ function createRenderer(bundle) {
   });
 }
 
+router.use('/api', api.routes());
+
 let indexHTML, renderer;
 
 if (config.debug) {
@@ -108,10 +104,8 @@ if (config.debug) {
   renderer = createRenderer(fs.readFileSync(bundlePath, 'utf8'));
 }
 
-router.use('/api', api.routes());
-
 // Vue with server-side rendering
-router.get('*', c2k(function (req, res){
+router.get('*', c2k(function (req, res, next){
   // 由于是以stream的方式输出，所以要设置下响应的内容类型
   res.setHeader('Content-Type', 'text/html');
 
@@ -145,16 +139,7 @@ router.get('*', c2k(function (req, res){
   });
 
   renderStream.on('error', err => {
-    if (err && err.code === 404) {
-      res.statusCode = 404;
-      res.end('404 | Page Not Found');
-      return;
-    }
-
-    res.statusCode = 500;
-    res.end('500 | Internal Error');
-
-    // 稍后记录日志
+    next(err);
   });
 }));
 

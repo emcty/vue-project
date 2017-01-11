@@ -22,9 +22,13 @@ let db = {
   sequelize: sequelize
 };
 
-// 读取当前目录下的所有model，排除隐藏文件，目录及本文件
+// 读取当前目录下的所有model，排除隐藏文件，目录及文件自身
 fs.readdirSync(__dirname)
-  .filter(file => file.indexOf('.') !== 0 && file !== __filename && fs.statSync(file).isFile())
+  .filter(file => (
+    file.indexOf('.') !== 0
+    && file !== path.basename(__filename)
+    && fs.statSync(path.resolve(__dirname, file)).isFile())
+  )
   .forEach(file => {
     let model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
