@@ -7,11 +7,13 @@ module.exports = {
   outputBase: './dist',
   prod: {
     env: 'production',
-    publicPath: '/assets/'
+    publicPath: '/',
+    filePath: 'assets/'
   },
   dev: {
     env: 'development',
     publicPath: '/',
+    filePath: '',
     port: 8091,
     proxyToServer: false,
     // serverUrl: 'http://10.106.40.55:8060',
