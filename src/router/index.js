@@ -1,8 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from 'views/Home';
-import Doc from 'views/Doc';
-import NotFound from 'views/NotFound';
 
 Vue.use(Router);
 
@@ -11,20 +8,24 @@ const router = new Router({
   scrollBehavior() {
     return {y: 0};
   },
-  routes: [
-    {
-      path: '/',
-      component: Home
-    },
-    {
-      path: '/docs',
-      component: Doc
-    },
-    {
-      path: '*',
-      component: NotFound
-    }
-  ]
+  routes: [{
+      path: "/",
+      meta: {
+          docTitle: "趣享卡",
+      }
+  },
+  {
+      path: "/wxIndex",
+      component: function(resolve) {
+          require.ensure(['wxPage/wxIndex/wxIndex'], () => {
+              resolve(require('wxPage/wxIndex/wxIndex'));
+          }, 'wxIndex')
+      },
+      meta: {
+          docTitle: "趣享卡",
+
+      }
+  }]
 });
 
 export default router;

@@ -3,17 +3,17 @@
 
 'use strict';
 
-const koa = require('koa');
+const express = require('express');
 const chalk = require('chalk');
 const path = require('path');
 const requireDir = require('require-dir');
-const chalk = require('chalk');
-const router = require('koa-router')();
+const router = express.Router();
+const config = require('./config').dev.mock;
 
-const app = koa();
+const app = express();
 
 const contentBase = path.resolve('mock/');
-const port = 8092;
+const port = config.port;
 
 const routesModules = requireDir(contentBase, {recurse: true});
 
@@ -29,9 +29,7 @@ for (let name in routesModules) {
   }
 }
 
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
+app.use(router);
 
 app.listen(port, '0.0.0.0', (err) => {
 

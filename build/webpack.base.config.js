@@ -2,30 +2,33 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 
-const DEBUG = process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testing';
-const inputBase = 'src/';
-const outputBase = 'public/';
+const config = require('./config');
+
+const DEBUG = process.env.NODE_ENV !== 'production';
+const inputBase = config.inputBase;
+const outputBase = config.outputBase;
+
 const filename = `[name]${DEBUG ? '' : '-[hash:10]'}.[ext]`;
 
 module.exports = {
   entry: {
-    main: path.resolve(inputBase, 'client-main.js'),
+    main: path.resolve(inputBase, 'main.js'),
     vendor: [
       'babel-polyfill',
       'whatwg-fetch',
       'vue',
-      'vue-router',
-      'vuex',
-      'vuex-router-sync',
-      'nprogress'
+      'vue-router'
     ]
   },
   output: {
     path: path.resolve(outputBase),
-    publicPath: '/assets/',
-    filename: '[name].[chunkhash:10].js'
+    publicPath: DEBUG ? config.dev.publicPath : config.prod.publicPath,
+    filename: '[name].[hash:10].js',
+    chunkFilename: 'chunk.[id]-[chunkhash:10].js'
   },
   recordsPath: path.resolve('.webpack-records.json'),
   module: {
@@ -38,6 +41,13 @@ module.exports = {
         test: /\.js/,
         exclude: /node_modules/,
         loader: 'babel'
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', [
+          `css${process.env.NODE_ENV === 'production' ? '?minimize' : ''}`,
+          'postcss'
+        ])
       },
       {
         test: /\.(?:woff2?|eot|ttf)$/,
@@ -63,5 +73,28 @@ module.exports = {
   resolve: {
     root: path.resolve(inputBase),
     extensions: ['', '.js', '.vue']
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      children: true,
+      minChunks: 2
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
+    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'manifest',
+    //   chunks: ['vendor']
+    // }),
+    new ExtractTextPlugin(`style-[chunkhash:10].css`, {
+      allChunks: !DEBUG
+    })
+  ]
 }
