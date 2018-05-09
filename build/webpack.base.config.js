@@ -12,7 +12,7 @@ const DEBUG = process.env.NODE_ENV !== 'production';
 const inputBase = config.inputBase;
 const outputBase = config.outputBase;
 
-const filename = `[name]${DEBUG ? '' : '-[hash:10]'}.[ext]`;
+// const filePath = DEBUG ? config.dev.publicPath : config.prod.publicPath;
 
 module.exports = {
   entry: {
@@ -31,48 +31,104 @@ module.exports = {
     chunkFilename: 'chunk.[id]-[chunkhash:10].js'
   },
   recordsPath: path.resolve('.webpack-records.json'),
+  resolve: {
+    extensions: ['.js', '.vue','.json'],
+    modules: [
+      path.resolve('./src'),
+      path.resolve('node_modules')
+    ]
+  },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.vue$/,
-        loader: 'vue'
-      },
-      {
-        test: /\.js/,
+        test: /.vue$/,
+        loader: 'vue-loader',
         exclude: /node_modules/,
-        loader: 'babel'
+        options: {
+          loaders: {
+            css: DEBUG
+              ? ['vue-style-loader', 'css-loader']
+              : ExtractTextPlugin.extract({
+                  use: 'css-loader?minimize',
+                  fallback: 'vue-style-loader'
+                })
+          },
+          postcss: [
+            require('postcss-cssnext')({
+              features: {
+                autoprefixer: {
+                  browsers: [
+                    'last 3 versions',
+                    '> 1% in CN',
+                    'Firefox ESR',
+                    'opera 12.1',
+                    'ie >= 9',
+                    'edge >= 12',
+                    'safari >= 7'
+                  ]
+                }
+              }
+            })
+          ]
+        }
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', [
-          `css${process.env.NODE_ENV === 'production' ? '?minimize' : ''}`,
-          'postcss'
-        ])
+        test: /.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
       },
       {
-        test: /\.(?:woff2?|eot|ttf)$/,
-        loader: `file?name=${filename}`
+        test: /\.(?:woff2?|eot|ttf|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: DEBUG ? '[name].[ext]' : '[name]-[hash:10].[ext]'
+        }
       },
       {
-        test: /\.(?:png|jpe?g|gif|svg)$/,
-        loader: `url?limit=10000&name=${filename}`
+        test: /\.(?:png|jpe?g|gif)$/,
+        loaders: DEBUG
+          ? [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: '[name].[ext]'
+                }
+              }
+            ]
+          : [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: '[name]-[hash:10].[ext]'
+                }
+              },
+              {
+                loader: 'image-webpack-loader',
+                options: {
+                  progressive: true,
+                  optimizationLevel: 7,
+                  interlaced: false,
+                  pngquant: {
+                    quality: '65-90',
+                    speed: 4
+                  }
+                }
+              }
+            ]
+      },
+      {
+        test: /.css$/,
+        include: /node_modules/,
+        use: DEBUG
+            ? ['vue-style-loader', 'css-loader']
+            : ExtractTextPlugin.extract({
+                use: 'css-loader?minimize',
+                fallback: 'vue-style-loader'
+              })
       }
     ]
-  },
-  vue: {
-    postcss: [
-      cssnext({
-        features: {
-          autoprefixer: {
-            browsers: ['last 3 versions', '> 1% in CN', 'Firefox ESR', 'opera 12.1', 'ie >= 9', 'edge >= 12', 'safari >= 7']
-          }
-        }
-      })
-    ]
-  },
-  resolve: {
-    root: path.resolve(inputBase),
-    extensions: ['', '.js', '.vue']
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -89,10 +145,10 @@ module.exports = {
       name: 'vendor',
       minChunks: Infinity
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'manifest',
-    //   chunks: ['vendor']
-    // }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      chunks: ['vendor']
+    }),
     new ExtractTextPlugin(`style-[chunkhash:10].css`, {
       allChunks: !DEBUG
     })

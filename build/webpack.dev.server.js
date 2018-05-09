@@ -15,6 +15,8 @@ const inputBase = config.inputBase;
 const port = config.dev.port;
 const mockPort = config.dev.mock.port;
 
+process.noDeprecation = true;
+
 let compiler = webpack(merge.smart(webpackBaseConfig, {
   entry: {
     app: [
@@ -23,11 +25,11 @@ let compiler = webpack(merge.smart(webpackBaseConfig, {
     ]
   },
   cache: true,
-  debug: true,
   devtool: 'cheap-module-inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(config.inputBase, 'index.html'),

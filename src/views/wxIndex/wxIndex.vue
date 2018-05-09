@@ -30,10 +30,6 @@
   </div>
 </template>
 <script>
-  //  import smartLogo from "main/components/wxLogo/wxLogo";
-  //  import Api from "apiConfig/apiConfig";
-  //  import {wxHasCookie} from "assets/js/common/core";
-  //  import _ from 'lodash';
     export default {
         data: function() {
             return {
@@ -58,8 +54,16 @@
 </script>
 <style scoped>
 
-  @import "wxIndex.css";
+  /* /* @import "wxIndex.css"; */
+    .wx-user-info {
+      height: 464px;
+      background: url(./images/icon_user_bg.png) no-repeat top left;
+      background-size: 100% 100%;
+      color: #fff;
+      overflow: hidden;
+  
+  } 
 
- 
+
 
 </style>

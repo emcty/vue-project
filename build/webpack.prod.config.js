@@ -27,27 +27,15 @@ const imageWebpack = {
 }
 
 module.exports = merge.smart(webpackBaseConfig, {
-  module: {
-    loaders: [
-      {
-        test: /\.(?:png|jpe?g|gif|svg)$/,
-        loaders: [`image-webpack?${JSON.stringify(imageWebpack)}`]
-      }
-    ]
-  },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    new CleanWebpackPlugin([outputBase], {
-      root: path.resolve('./'),
-      verbose: true
-    }),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {
         warnings: false
       }
     }),
-    new webpack.optimize.DedupePlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(config.inputBase, 'index.html'),

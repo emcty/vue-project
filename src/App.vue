@@ -1,16 +1,21 @@
 <template>
-  <div class="page-container" >
-        <!--内容区 start -->
-            <router-view></router-view>  
-        <!--内容区 end-->
-    </div>
+  <div id="app">
+  <router-view></router-view>
+</div>
 </template>
 <script>
+
+ export default {
+
+  data(){
+    return {}
+  }
+ }
 
 </script>
 
 <style>
- .page-container{
+ #app{
    background: red;
    width: 500px;
    height: 500px;

@@ -4,15 +4,18 @@ import router from './router';
 import App from './App.vue';
 
 
-
+console.log(App);
 
 const app = new Vue({
-  el:"#app",
-  template: '<App/>',
   router,
-  render: (h)=> h(App)
-  // components: {App}
+  render: h => h(App)
+})
+
+router.onReady(() => {
+  app.$mount("#app");
 });
+
+
 
 
 

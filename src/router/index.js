@@ -9,21 +9,14 @@ const router = new Router({
     return {y: 0};
   },
   routes: [{
-      path: "/",
-      meta: {
-          docTitle: "趣享卡",
-      }
+      path: "/"
   },
   {
       path: "/wxIndex",
       component: function(resolve) {
-          require.ensure(['wxPage/wxIndex/wxIndex'], () => {
-              resolve(require('wxPage/wxIndex/wxIndex'));
+          require.ensure(['views/wxIndex/wxIndex'], () => {
+              resolve(require('views/wxIndex/wxIndex'));
           }, 'wxIndex')
-      },
-      meta: {
-          docTitle: "趣享卡",
-
       }
   }]
 });
