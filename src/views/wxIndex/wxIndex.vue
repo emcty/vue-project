@@ -54,7 +54,7 @@
 </script>
 <style scoped>
 
-  /* /* @import "wxIndex.css"; */
+  /* @import "wxIndex.css"; */
     .wx-user-info {
       height: 464px;
       background: url(./images/icon_user_bg.png) no-repeat top left;

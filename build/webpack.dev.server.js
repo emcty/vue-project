@@ -28,8 +28,16 @@ let compiler = webpack(merge.smart(webpackBaseConfig, {
   devtool: 'cheap-module-inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      children: true,
+      minChunks: 2
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor','manifest'],
+      minChunks: Infinity
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(config.inputBase, 'index.html'),

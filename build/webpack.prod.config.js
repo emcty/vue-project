@@ -8,6 +8,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = require('./config');
 const webpackBaseConfig = require('./webpack.base.config');
@@ -30,6 +31,10 @@ module.exports = merge.smart(webpackBaseConfig, {
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(true),
+    new CleanWebpackPlugin([config.outputBase], {
+      root: path.resolve('./'),
+      verbose: true
+    }),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {

@@ -19,8 +19,8 @@ module.exports = {
     main: path.resolve(inputBase, 'main.js'),
     vendor: [
       'babel-polyfill',
-      'whatwg-fetch',
       'vue',
+      'vue-resource',
       'vue-router'
     ]
   },
@@ -36,7 +36,13 @@ module.exports = {
     modules: [
       path.resolve('./src'),
       path.resolve('node_modules')
-    ]
+    ],
+    alias: {
+      'vue$': 'vue/dist/vue.common.js',
+      'src': path.resolve(__dirname, '../src'),
+      'assets': path.resolve(__dirname, '../src/assets'),
+      'components': path.resolve(__dirname, '../src/components')
+    }
   },
   module: {
     rules: [
@@ -120,9 +126,9 @@ module.exports = {
       },
       {
         test: /.css$/,
-        include: /node_modules/,
+        exclude: /node_modules/,
         use: DEBUG
-            ? ['vue-style-loader', 'css-loader']
+            ? ['css-loader','postcss-loader']
             : ExtractTextPlugin.extract({
                 use: 'css-loader?minimize',
                 fallback: 'vue-style-loader'
@@ -130,27 +136,21 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      async: true,
-      children: true,
-      minChunks: 2
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['vendor']
-    }),
-    new ExtractTextPlugin(`style-[chunkhash:10].css`, {
-      allChunks: !DEBUG
-    })
-  ]
+  plugins: DEBUG
+    ? [
+      new webpack.NamedModulesPlugin()
+    ]
+    : [
+      new webpack.HashedModuleIdsPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        minimize: true,
+        compress: {
+          warnings: false
+        }
+      }),
+      new ExtractTextPlugin({
+        filename: 'style-[chunkhash:10].css',
+        allChunks: true
+      })
+    ]
 }
