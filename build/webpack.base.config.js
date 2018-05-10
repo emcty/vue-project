@@ -38,7 +38,6 @@ module.exports = {
       path.resolve('node_modules')
     ],
     alias: {
-      'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components')
@@ -135,22 +134,5 @@ module.exports = {
               })
       }
     ]
-  },
-  plugins: DEBUG
-    ? [
-      new webpack.NamedModulesPlugin()
-    ]
-    : [
-      new webpack.HashedModuleIdsPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        minimize: true,
-        compress: {
-          warnings: false
-        }
-      }),
-      new ExtractTextPlugin({
-        filename: 'style-[chunkhash:10].css',
-        allChunks: true
-      })
-    ]
+  }
 }

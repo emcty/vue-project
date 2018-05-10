@@ -27,6 +27,7 @@ let compiler = webpack(merge.smart(webpackBaseConfig, {
   cache: true,
   devtool: 'cheap-module-inline-source-map',
   plugins: [
+    
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -38,6 +39,7 @@ let compiler = webpack(merge.smart(webpackBaseConfig, {
       names: ['vendor','manifest'],
       minChunks: Infinity
     }),
+    new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(config.inputBase, 'index.html'),

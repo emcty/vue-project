@@ -30,6 +30,7 @@
   </div>
 </template>
 <script>
+
     export default {
         data: function() {
             return {
@@ -43,6 +44,7 @@
             }
         },
         created: function(){
+          this.$alert("aaaa");
            
         },
       
