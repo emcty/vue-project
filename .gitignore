@@ -2,6 +2,7 @@
 npm-debug.log
 .webpack-records.json
 node_modules/
+pageage-lock.json
 dist/
 .idea/
 public/

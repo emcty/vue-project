@@ -16,11 +16,11 @@ const outputBase = config.outputBase;
 
 module.exports = {
   entry: {
-    main: path.resolve(inputBase, 'main.js'),
+    main: path.resolve(inputBase, 'main.js'), 
     vendor: [
       'babel-polyfill',
       'vue',
-      'vue-resource',
+      'axios',
       'vue-router'
     ]
   },
@@ -125,10 +125,10 @@ module.exports = {
             ]
       },
       {
-        test: /.css$/,
+        test: /.(css|scss)$/,
         exclude: /node_modules/,
         use: DEBUG
-            ? ['vue-style-loader','css-loader','postcss-loader']
+            ? ['vue-style-loader','css-loader','postcss-loader','sass-loader']
             : ExtractTextPlugin.extract({
                 use: 'css-loader?minimize',
                 fallback: 'vue-style-loader'
