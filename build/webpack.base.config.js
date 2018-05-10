@@ -53,7 +53,7 @@ module.exports = {
         options: {
           loaders: {
             css: DEBUG
-              ? ['vue-style-loader', 'css-loader']
+              ? ['vue-style-loader', 'css-loader','postcss-loader']
               : ExtractTextPlugin.extract({
                   use: 'css-loader?minimize',
                   fallback: 'vue-style-loader'
@@ -128,7 +128,7 @@ module.exports = {
         test: /.css$/,
         exclude: /node_modules/,
         use: DEBUG
-            ? ['css-loader','postcss-loader']
+            ? ['vue-style-loader','css-loader','postcss-loader']
             : ExtractTextPlugin.extract({
                 use: 'css-loader?minimize',
                 fallback: 'vue-style-loader'

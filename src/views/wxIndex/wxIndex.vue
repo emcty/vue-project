@@ -53,6 +53,15 @@
 
 </script>
 <style scoped>
-  @import "wxIndex.css";
+
+
+  .wx-user-info {
+      height: 184px;
+      background: url(./images/icon_user_bg.png) no-repeat top left;
+      background-size: 100% 100%;
+      color: #fff;
+      overflow: hidden;
+      flex:1;
+  } 
 
 </style>

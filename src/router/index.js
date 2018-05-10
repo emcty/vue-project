@@ -17,7 +17,7 @@ const router = new Router({
           require.ensure(['views/wxIndex/wxIndex'], () => {
               resolve(require('views/wxIndex/wxIndex'));
           }, 'wxIndex')
-      }
+      },
   }]
 });
 
