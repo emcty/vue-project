@@ -19,7 +19,7 @@ process.noDeprecation = true;
 
 let compiler = webpack(merge.smart(webpackBaseConfig, {
   entry: {
-    app: [
+    main: [
       'webpack-dev-server/client?/',
       'webpack/hot/only-dev-server'
     ]

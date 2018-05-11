@@ -3,7 +3,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 
 const config = require('./config');
@@ -16,7 +15,7 @@ const outputBase = config.outputBase;
 
 module.exports = {
   entry: {
-    main: path.resolve(inputBase, 'main.js'), 
+    main: [path.resolve(inputBase, 'main.js')], 
     vendor: [
       'babel-polyfill',
       'vue',
@@ -31,6 +30,11 @@ module.exports = {
     chunkFilename: 'chunk.[id]-[chunkhash:10].js'
   },
   recordsPath: path.resolve('.webpack-records.json'),
+  resolveLoader:{
+    alias:{
+      'scss-loader':'sass-loader'
+    }
+  },
   resolve: {
     extensions: ['.js', '.vue','.json'],
     modules: [
@@ -62,15 +66,7 @@ module.exports = {
             require('postcss-cssnext')({
               features: {
                 autoprefixer: {
-                  browsers: [
-                    'last 3 versions',
-                    '> 1% in CN',
-                    'Firefox ESR',
-                    'opera 12.1',
-                    'ie >= 9',
-                    'edge >= 12',
-                    'safari >= 7'
-                  ]
+                  browsers: ['last 3 versions','> 1% in CN','Firefox ESR','opera 12.1','ie >= 9','edge >= 12','safari >= 7']
                 }
               }
             })
@@ -124,13 +120,13 @@ module.exports = {
             ]
       },
       {
-        test: /.(css|scss)$/,
+        test: /\.(css|scss)$/,
         exclude: /node_modules/,
         use: DEBUG
             ? ['vue-style-loader','css-loader','postcss-loader','sass-loader']
             : ExtractTextPlugin.extract({
                 use: 'css-loader?minimize',
-                fallback: 'vue-style-loader'
+                fallback: ['vue-style-loader','sass-loader']
               })
       }
     ]

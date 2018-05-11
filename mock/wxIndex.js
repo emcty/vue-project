@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(router) {
-  router.get('/api/user/:id', (req, res) => {
+  router.post('/api/user/abc.json', (req, res) => {
     res.json({
       status: 0,
       data: {

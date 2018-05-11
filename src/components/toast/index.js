@@ -24,7 +24,6 @@ function toast(message = '') {
 
   instance.vm.visible = true;
 
-  console.log(instance.vm);
 
   return instance.vm;
 }

@@ -1,4 +1,4 @@
-<style scoped lang="sass">
+<style scoped>
 .toast {
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
@@ -58,7 +58,6 @@ export default {
   },
   methods: {
     hide() {
-      console.log('hide');      
       this.$destroy();
       this.$el.parentNode.removeChild(this.$el);
     }

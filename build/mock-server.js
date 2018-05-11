@@ -17,6 +17,7 @@ const port = config.port;
 
 const routesModules = requireDir(contentBase, {recurse: true});
 
+
 for (let name in routesModules) {
   if (
     routesModules.hasOwnProperty(name)
