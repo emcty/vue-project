@@ -67,7 +67,7 @@
     }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 
     .v-jlc-confirm-modal {
         position: fixed;

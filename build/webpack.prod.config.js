@@ -7,6 +7,7 @@ process.env.NODE_ENV = 'production';
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -40,6 +41,10 @@ module.exports = merge.smart(webpackBaseConfig, {
       compress: {
         warnings: false
       }
+    }),
+    new ExtractTextPlugin({
+      filename: 'style-[chunkhash:10].css',
+      allChunks: true
     }),
     new HtmlWebpackPlugin({
       inject: true,
