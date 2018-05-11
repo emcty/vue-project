@@ -30,7 +30,11 @@
   </div>
 </template>
 <script>
-
+    import {
+        getPara,
+        goUrl,
+        trim
+    } from 'assets/js/modules/tool'
     export default {
         data: function() {
             return {
@@ -44,8 +48,18 @@
             }
         },
         created: function(){
-          this.$alert("aaaa");
-           
+            // this.$alert("aaaa");
+            // this.$toast('123');
+            this.$confirm({
+                title:'更新提示',
+                message: '亲爱的简宝，使用更新版本简理财抢红包，更迅速呦！', 
+                buttons: [{name: '取消'},{name:'立即更新'}],
+                textAlign:'left'
+            }).then((res) =>{
+                if(res.index == 1){
+                    jlcApp.updateApp();
+                }
+            });
         },
       
         components: {

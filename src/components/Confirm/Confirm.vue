@@ -67,7 +67,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="sass" scoped>
 
     .v-jlc-confirm-modal {
         position: fixed;
@@ -152,48 +152,4 @@
     .v-jlc-comfirm-fade-leave-to {
         opacity: 0;
     }
-
-    // .v-jlc-comfirm-bounce-enter-active {
-    //     -webkit-animation: bounce-in .5s;
-    //     animation: bounce-in .5s;
-    // }
-
-    // .v-jlc-comfirm-bounce-leave-active {
-    //      -webkit-animation: bounce-in .5s reverse;
-    //     animation: bounce-in .5s reverse;
-    // }
-    // @-webkit-keyframes bounce-in {
-    //     0% {
-    //         -webkit-transform: scale(1);
-    //         transform: scale(1);
-    //         opacity: 0;
-    //     }
-    //     50% {
-    //         -webkit-transform: scale(1.2);
-    //         transform: scale(1.2);
-    //         opacity: .5;
-    //     }
-    //     100% {
-    //         -webkit-transform: scale(1);
-    //         transform: scale(1);
-    //         opacity: 1;
-    //     }
-    // }
-    // @keyframes bounce-in {
-    //     0% {
-    //         -webkit-transform: scale(1);
-    //         transform: scale(1);
-    //         opacity: 0;
-    //     }
-    //     50% {
-    //         -webkit-transform: scale(1.2);
-    //         transform: scale(1.2);
-    //         opacity: .5;
-    //     }
-    //     100% {
-    //         -webkit-transform: scale(1);
-    //         transform: scale(1);
-    //         opacity: 1;
-    //     }
-    // }
 </style>
