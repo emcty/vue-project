@@ -11,6 +11,7 @@
         </div>
       </div>
     </div>
+    <a href="">确认转入</a>
   </div>
   
 </template>
@@ -20,7 +21,7 @@ export default {
 
   },
   created(){
-    console.log(0);
+    
 
   },
   methods:{
