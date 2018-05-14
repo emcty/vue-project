@@ -13,8 +13,8 @@
      padding: 0;
  }
  body {
-     font-family: "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", sans-self;
-     -webkit-font-smoothing: antialiased;
+  font-family: "Helvetica Neue", Arial, Roboto, "Droid Sans", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
  }
  ul, ol {
      list-style: none;
@@ -25,9 +25,13 @@
  a:hover,
  a:active {
      text-decoration: none;
+     color: inherit;
  }
  button, input, textarea, select {
      font-family: inherit;
+ }
+ input:active,input:focus{
+   outline: 0;
  }
  input[type="button"],
  input[type="submit"],

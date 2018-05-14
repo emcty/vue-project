@@ -1,0 +1,36 @@
+<template>
+  <div class="form-container">
+    <div class="item"><label for="money">转入金额</label><input type="tel" id="money" placeholder="最少需转入1000" ><em>元</em></div>
+    <div class="card-container item">
+      <span>支付银行卡</span>
+      <div class="card-item clearfix">
+        <img src="" alt="">
+        <div class="card-info">
+          <p>建设银行（尾号3377）</p>
+          <p>单笔限额20万／单日限额20万</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</template>
+<script>
+export default {
+  data(){
+
+  },
+  created(){
+    console.log(0);
+
+  },
+  methods:{
+
+  }
+  
+}
+</script>
+<style lang="sass" scoped>
+ @import './fundIn.scss'
+</style>
+
+

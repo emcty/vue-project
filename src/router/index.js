@@ -28,11 +28,11 @@ const router = new Router({
         }
     }, 
     {
-      path: "/fundEntry", 
+      path: "/fundIn", 
       component: function(resolve) {
-          require.ensure(['views/fundEntry/fundEntry'], () => {
-              resolve(require('views/fundEntry/fundEntry'));
-          }, 'fundEntry')
+          require.ensure(['views/fundIn/fundIn'], () => {
+              resolve(require('views/fundIn/fundIn'));
+          }, 'fundIn')
       }
     },
     ]
