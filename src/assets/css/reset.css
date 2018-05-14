@@ -37,7 +37,9 @@
  input[type="submit"],
  input[type="reset"],
  button {
-     cursor: pointer;
+    cursor: pointer;
+    background: none;
+    border: 0 none;
  }
  button[disabled],
  input[disabled],
