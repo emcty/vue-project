@@ -7,7 +7,7 @@
  */
 
 // 引入 本地的axios文件 文档 https://www.npmjs.com/package/axios
-require('es6-promise').polyfill();
+// require('es6-promise').polyfill();
 import axios from "axios"
 // import GlobalPath from '../main'
 import Vue from 'vue'

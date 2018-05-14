@@ -3,7 +3,6 @@
         123
     </div>
 </template>
-<script src="./register.js"></script>
 <script>
 
 

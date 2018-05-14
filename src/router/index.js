@@ -20,7 +20,7 @@ const router = new Router({
         }
     }, 
     {
-        path: "/register",  //注册登录
+        path: "/register", 
         component: function(resolve) {
             require.ensure(['views/register/register'], () => {
                 resolve(require('views/register/register'));
