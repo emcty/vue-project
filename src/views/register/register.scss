@@ -1,20 +1,168 @@
 [v-cloak] {
     display: none;
 }
-/* 清除浮动 */
+/*注册登录*/
 
-.clearfix {
-    *zoom: 1;
-    /*IE/7/6*/
-    &:after {
-        content: "\200B";
-        display: block;
-        height: 0;
-        clear: both;
+.registerBox {
+    position: relative;
+    width: calc(100% - 80px);
+    height: 100%;
+    height: 100%;
+    overflow: hidden;
+    min-height: 800px;
+    font-size: 30px;
+    padding: 60px 40px 0;
+    .form>li {
+        position: relative;
+        width: 660px;
+        height: 108px;
+        padding: 30px 0 0 10px;
+        border-bottom: 1px solid #f0f2f7;
     }
 }
+input {
+    height: 60px;
+    line-height: 50px;
+    color: #233251;
+    font-size: 42px;
+    border: none;
+    letter-spacing: .2px;
+}
+input::input-placeholder {
+    letter-spacing: .2px;
+    color: #B9C1CA;
+    font-size: 32px;
+}
+input::-webkit-input-placeholder {
+    letter-spacing: .2px;
+    color: #B9C1CA;
+    font-size: 32px;
+}
+.width500 {
+    width: 500px;
+}
+.width350 {
+    width: 350px;
+}
+.absolute {
+    position: absolute;
+}
+.btn-clear {
+    top: 35px;
+    right: 10px;
+    padding: 10px;
+}
+.clear {
+    width: 41px;
+    height: 40px;
+}
+.img-checkCode {
+    width: 170px;
+    height: 90px;
+    top: 25px;
+    right: 0px;
+    border-radius: 5px;
+    background: #4B473C;
+}
+.btn-getCheckCode {
+    width: 170px;
+    height: 64px;
+    /*border-left:2px solid #5C430B;*/
+    top: 30px;
+    right: 0px;
+    color: #ed2c50;
+    font-size: 32px;
+    letter-spacing: .5px;
+}
+.btn-getCheckCode:before {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    content: '';
+    height: 38px;
+    width: 1px;
+    background: #f0f2f7;
+}
+/*错误提示*/
 
-/*注册登录*/
-.registerBox{
-    background: red;
+.error-wrap {
+    margin-top: 20px;
+    height: 30px;
+    line-height: 30px;
+    color: #7b899c;
+    font-size: 24px;
+    .errorImg {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+    span span {
+        letter-spacing: .5px;
+    }
+}
+.ellipsis {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.icon-error {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-top: -3px;
+}
+/*登录按钮*/
+
+.btn-login {
+    display: block;
+    width: 562px;
+    height: 90px;
+    font-size: 34px;
+    color: #fff;
+    margin: 50px auto 0;
+    background: #d4d7de;
+    border-radius: 50px;
+    letter-spacing: 2px;
+    box-shadow: 0px 10px 10px #f2f4f9;
+}
+.agreement {
+    letter-spacing: .5px;
+    font-size: 24px;
+    color: #B9C1CA;
+    margin-top: 40px;
+    text-align: center;
+    .agree {
+        color: #788da9;
+    }
+}
+/*页脚*/
+
+.footer {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -180px;
+    width: 360px;
+}
+/*一线穿*/
+
+.line-cross {
+    display: flex;
+    li {
+        width: 24px;
+        border-top: 2px solid #dde2e8;
+    }
+    li.content {
+        flex: 1;
+        padding: 0 20px;
+        border: 0;
+        color: #d5dae1;
+        text-align: center;
+        font-size: 24px;
+        position: relative;
+        top: -15px;
+        letter-spacing: .5px;
+    }
 }
