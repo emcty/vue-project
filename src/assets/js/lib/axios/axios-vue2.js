@@ -13,10 +13,6 @@ import axios from "axios"
 import Vue from 'vue'
 import Confirm from '../../../../components/confirm'
 let Base64 = require('js-base64').Base64;
-// let Base64 = require('@js/lib/base64/base64')
-
-
-
 
 Vue.use(Confirm)
 

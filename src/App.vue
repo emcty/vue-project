@@ -8,11 +8,12 @@
 import Vue from 'vue';
 import Alert from 'components/alert';
 import Toast from 'components/Toast';
-import Comfirm from 'components/confirm'
+import axios from 'assets/js/lib/axios/axios-vue2.js';
 
+Vue.use(axios);
 Vue.use(Alert);
 Vue.use(Toast);
-Vue.use(Comfirm);
+
 
  export default {
 
@@ -26,7 +27,12 @@ Vue.use(Comfirm);
 
 </script>
 
-<style>
-    
+
+<style lang="scss" >
+  .page-container {
+    height: 100%;
+    min-height: 100%;
+  }
 </style>
+
 

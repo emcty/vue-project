@@ -15,8 +15,27 @@
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <link href="./static/favicon.ico" rel="shortcut icon">
   <title></title>
-  <!-- <script src="src/assets/js/modules/meta.js"></script> -->
 </head>
+<script>
+  (function () {
+    var width = window.meta && window.meta.uiWidth || 750,
+        pw = parseInt(window.screen.width),
+        scale = pw / width,
+        u = navigator.userAgent;
+    if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1) {
+        var version = parseFloat(u.slice(u.indexOf("Android") + 8)),
+            dpr = window.devicePixelRatio < 1.4 ? '330' : window.devicePixelRatio <= 2 ? '400' : 'device-dpi';
+        if (version > 2.3) {
+            document.write('<meta name="viewport" content="width=' + width + ',minimum-scale=' + scale + ',maximum-scale=' + scale + ',target-densitydpi=' + dpr + ',user-scalable=no">');
+        } else {
+            document.write('<meta name="viewport" content="width=' + width + ',target-densitydpi=device-dpi,user-scalable=no">');
+        }
+    } else {
+        scale = Math.floor(scale * 100) / 100
+        document.write('<meta name="viewport" content="width=' + width + ',minimum-scale=' + scale + ',maximum-scale=' + scale + ',target-densitydpi=device-dpi,user-scalable=no">');
+    }
+})();
+</script>
 <body>
   <div id="app"></div>
 

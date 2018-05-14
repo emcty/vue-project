@@ -27,6 +27,19 @@ const router = new Router({
             }, 'register')
         }
     }, 
+    {
+      path: "/fundEntry", 
+      component: function(resolve) {
+          require.ensure(['views/fundEntry/fundEntry'], () => {
+              resolve(require('views/fundEntry/fundEntry'));
+          }, 'fundEntry')
+      }
+    },
     ]
 });
+
+router.afterEach(function(to) {
+  document.title = to.meta.docTitle;
+});
+
 export default router;
