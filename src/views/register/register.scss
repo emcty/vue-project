@@ -1,0 +1,20 @@
+[v-cloak] {
+    display: none;
+}
+/* 清除浮动 */
+
+.clearfix {
+    *zoom: 1;
+    /*IE/7/6*/
+    &:after {
+        content: "\200B";
+        display: block;
+        height: 0;
+        clear: both;
+    }
+}
+
+/*注册登录*/
+.registerBox{
+    background: red;
+}
