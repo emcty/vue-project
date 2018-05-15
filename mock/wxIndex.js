@@ -11,7 +11,7 @@ module.exports = function(router) {
     });
   });
 
-  router.get('/api/date', (req, res) => {
+  router.post('/pay/recharge.json', (req, res) => {
     res.json({
       status: 0,
       data: new Date()

@@ -1,0 +1,47 @@
+.detail-container{
+  font-size: 32px;
+  .detail-info{
+    padding: 24px 96px 0;
+  }
+  .detail-process{
+    float: left;
+  }
+  .detail-text{
+    float: left;
+    margin-left: 60px;
+    padding-top: 10px;
+    section{
+      line-height: 1.5;
+      & ~ section{
+        margin-top: 70px;
+      }
+      &:first-child{
+        p:first-child{
+          color: #07a664;
+        }
+      }
+      p:last-child{
+        font-size: 24px;
+        color: #2f394e;
+      }
+    }
+  }
+  .sure-container{
+    width: 558px;
+    height: 88px;
+    line-height: 88px;
+    background: #ed2c50;
+    color: #fff;
+    font-weight: 700;
+    margin: 100px auto 36px;
+    text-align: center;
+    border-radius: 60px;
+    font-size: 34px;
+    box-shadow: 0 12px 38px rgba(237,44,80,.3);
+  }
+  .new-gift-banner{
+    margin: 50px auto 0;
+    width: 670px;
+    height: 180px;
+  }
+}

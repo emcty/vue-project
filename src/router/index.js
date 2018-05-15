@@ -43,6 +43,14 @@ const router = new Router({
           }, 'fundOut')
       }
     },
+    {
+      path: "/fundInDetail",  
+      component: function(resolve) {
+          require.ensure(['views/fundInDetail/fundInDetail'], () => {
+              resolve(require('views/fundInDetail/fundInDetail'));
+          }, 'fundInDetail')
+      }
+    },
     ]
 });
 export default router;

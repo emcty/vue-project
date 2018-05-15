@@ -59,7 +59,7 @@ const server = new WebpackDevServer(compiler, {
     children: false
   },
   proxy: {
-    '/api/*': {
+    '/wap/*': {
       target: `http://localhost:${mockPort}/`,
       secure: false
     },
