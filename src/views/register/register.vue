@@ -7,11 +7,11 @@
                 <img class="btn-clear absolute clear" transition="fade" alt="close" src="../../assets/images/clear.png" v-show="dataParams.phoneNum" @click="clearPhoneNumFn"/>
         	</li>
         	<li v-show="isCheckPhoneNum && !isCheckImgCode" transition="fade">
-        		<input class="width350" type="text" maxlength="4" placeholder="请输入图片验证码" v-else:img-code v-model="dataParams.imgCode">
+        		<input class="width350" type="text" maxlength="4" placeholder="请输入图片验证码" v-model="dataParams.imgCode">
                 <img class="img-checkCode absolute" :src="imgCodeUrl" @click="getImgCodeFn">
         	</li>
         	<li v-show="isCheckImgCode" transition="fade">
-        		<input class="width350" type="tel" maxlength="6" placeholder="请输入短信验证码" v-else:short-msg-code v-model="dataParams.shortMsgCode">
+        		<input class="width350" type="tel" maxlength="6" placeholder="请输入短信验证码" v-model="dataParams.shortMsgCode">
                 <button class="btn-getCheckCode absolute" :class="{disable:shortMsgCodeObj.disable}" v-text="shortMsgCodeObj.text" @click="getShortMsgCodeFn">30s</button>
         	</li>
         </ul>
@@ -29,7 +29,7 @@
         <!-- 按钮 end -->
         <!-- 协议 -->
         <div class="agreement" :class="{'active':radioActive}">
-        	<span @click="toggleSelect">我已阅读并同意</span>
+        	<span class="radio relative" @click="toggleSelect">我已阅读并同意</span>
         	<span class="agree">《xxx服务协议》</span>
         </div>
         <!-- 协议 end -->
@@ -51,7 +51,6 @@
 	    trim,
 	    cookie
 	} from 'assets/js/modules/tool'
-	import Vue from 'vue'
 	export default {
 	    name:"register",
 	    data() {
@@ -81,7 +80,7 @@
 	                regOrLoginWap: '',//wap注册登录
 	                regOrLoginWx: ''//微信注册登录
 	            }
-	            , imgCodeUrl: ''
+	            , imgCodeUrl: ''	//图片验证码url
 	            , radioActive: true //radio选中状态，同意按钮
 	            , isCheckPhoneNum: false//手机号校验状态
 	            , isCheckImgCode: false//图片验证码校验状态
@@ -118,7 +117,7 @@
 
                 /*以下为业务相关*/
                 this.seconds = this.shortMsgCodeObj.seconds;//初始化倒计时时钟
-                this.getImgCodeFn();//获取图片验证码
+                // this.getImgCodeFn();//获取图片验证码
                 // this.burialPoint();
             }
             /**
@@ -140,18 +139,33 @@
              * @return void
              * */
             , getImgCodeFn: function () {
-                var url = this.API.getImgCode;
-                this.$http.post(url, {})
-                .then(function (res) {
-                    res = res.json();
-                    if (res.data) {
-                        if (res.control.error == this.ERROR_OK) {
-                            this.sourceObj.openId = res.data.openid;
-                            //对验证码图片赋url
-                            this.imgCodeUrl = GlobalPath.ajaxurl + '/wap/platform/v1/captcha/code?openid=' + this.sourceObj.openId;
-                        }
-                    }
-                });
+                // var url = this.API.getImgCode;
+                // this.$http.post(url, {})
+                // .then(function (res) {
+                //     res = res.json();
+                //     if (res.data) {
+                //         if (res.control.error == this.ERROR_OK) {
+                //             this.sourceObj.openId = res.data.openid;
+                //             //对验证码图片赋url
+                //             this.imgCodeUrl = GlobalPath.ajaxurl + '/wap/platform/v1/captcha/code?openid=' + this.sourceObj.openId;
+                //         }
+                //     }
+                // });
+
+                let url = this.API.getImgCode,
+	                params = {};
+	            this.$http.post(url, params)
+	            .then(response => {
+	                let resData = response.data;
+	                if (!response) {
+	                    return false;
+	                }
+	                if (resData) {
+	                    this.sourceObj.openId = res.data.openid;
+                        //对验证码图片赋url
+                        this.imgCodeUrl = GlobalPath.ajaxurl + '/wap/platform/v1/captcha/code?openid=' + this.sourceObj.openId;
+	                }
+	            });
             }
             /**
              * 校验手机号
@@ -166,14 +180,6 @@
                     this.resetAll();
                 } else if (newV !== oldV) {
                     //处理分隔符
-                    /*if (newV.length === 3 || newV.length === 8) {
-                        this.$nextTick(function () {
-                            this.dataParams.phoneNum = this.dataParams.phoneNum + ' ';
-                        })
-                    }*/
-
-                    //手机号空格格式化
-                    //new addSpaceFn('#phoneNumber',1);
                     
                     clearTimeout(timer);
                     var timer = setTimeout(function(){
@@ -243,8 +249,8 @@
              * 发送短信验证码，开始倒计时
              * */
             , sendMsgCodeFn: function () {
-                var _this = this;
-                var url = this.API.getShortMsgCode,
+                let _this = this;
+                let url = this.API.getShortMsgCode,
                     dataParams = {
                         phoneNumber: this.dataParams.phoneNum.replace(/\s+/g, ''),
                         openid: this.sourceObj.openId,
@@ -254,8 +260,9 @@
                     };
                  this.$http.post(url, dataParams)
                  .then(function (res) {
-                    res = res.json();
-                    if (res.data) {
+                    // res = res.json();
+                     let resData = response.data;
+                    if (resData) {
 
                         if (res.control.error == this.ERROR_OK) {//校验成功
                             this.errorTxt = '验证码已发送至手机'
@@ -375,6 +382,6 @@
 	    }
 	}
 </script>
-<style lang="sass" scoped>
+<style lang="sass">
     @import './register.scss'
 </style>

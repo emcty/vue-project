@@ -1,0 +1,146 @@
+[v-cloak] {
+    display: none;
+}
+/*我的银行卡*/
+html,body{
+    width: 100%;
+    height: 100%;
+    background: #f5f7fa;
+    overflow: hidden;
+}
+.bankCardBox{
+    width: 670px;
+    min-height: 100%;
+    overflow-x: hidden;
+    padding: 40px 40px 0;
+}
+.titleText{
+    font-size: 24px;
+    color: #7b899c;
+    margin-bottom: 30px;
+}
+.inputBox{
+    width: 630px;
+    height: 226px;
+    border-radius: 10px;
+    background: #fff;
+    padding: 0 20px;
+    .nameBox, .idBox{
+        width: 632px;
+        height: 112px;
+        line-height: 112px;
+        font-size: 32px;
+        color: #233251;
+        letter-spacing: .5px;
+        li{
+            display: inline-block;
+        }
+        li:nth-child(1){
+            font-weight: bold;
+        }
+        li:nth-child(2){
+            float: right;
+        }
+    }
+    .nameBox{
+        border-bottom: 2px solid #f0f2f7;
+    }
+}
+.mt40{
+    margin-top: 40px;
+}
+/*银行卡信息*/
+.cardInfoBox{
+    position: relative;
+    width: 620px;
+    height: 220px;
+    border-radius: 10px;
+    background: -webkit-linear-gradient(left, #ff5165, #ed2c50);
+    background: linear-gradient(left, #ff5165, #ed2c50); 
+    box-shadow: 5px 10px 10px #f3d1da;
+    margin-left: 25px;
+    color: #fff0ef;
+    .bankLogoBox{
+        width: 70px;
+        height: 70px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 45px;
+        left: 42px;
+        .bankLogo{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: red;
+            margin:10px 0 0 10px;
+        }
+    }
+    .bankName{
+        position: absolute;
+        left: 145px;
+        top: 40px;
+        font-size: 36px;
+        font-weight: bold;
+    }
+    .bankType{
+        position: absolute;
+        left: 145px;
+        top: 92px;
+        font-size: 24px;
+    }
+    .bankNum{
+        position: absolute;
+        right: 50px;
+        bottom: 30px;
+        font-size: 36px;
+        letter-spacing: 6px;
+    }
+}
+/*小贴士*/
+.tipsBox{
+    margin-top: 110px;
+    /*一线穿*/
+    .line-cross {
+        display: flex;
+        li {
+            width: 220px;
+            border-top: 2px solid #f0f2f7;
+        }
+        li.content {
+            position: relative;
+            flex: 1;
+            border: 0;
+            color: #7b899c;
+            text-align: center;
+            font-size: 24px;
+            top: -15px;
+            letter-spacing: .5px;
+        }
+    }
+    .houseImg{
+        width: 36px;
+        height: 36px;
+        vertical-align: bottom;
+        margin-right: 10px;
+    }
+}
+.cardInto{
+    margin-top: 30px;
+    p:nth-child(1){
+        font-size: 24px;
+        font-weight: bold;
+        color: #3b445a;
+    }
+    p:nth-child(2){
+        font-size: 20px;
+        color: #909caa;
+        margin-top: 10px;
+    }
+    .buyPutImg{
+        width: 300px;
+        height: 90px;
+        margin-top: 20px;
+    }
+}
