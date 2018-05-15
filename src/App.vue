@@ -23,7 +23,7 @@ Vue.use(Confirm);
     return {}
 	},
 	created(){
-		fastclick.attach(document.body);
+		fastclick.attach(document.body);  
 	}
 }
 
