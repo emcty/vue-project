@@ -9,7 +9,7 @@ module.exports = {
   prod: {
     env: 'production',
     publicPath: '/',
-    filePath: ''
+    filePath: 'assets/'
   },
   dev: {
     env: 'development',

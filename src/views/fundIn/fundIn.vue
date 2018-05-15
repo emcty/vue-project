@@ -11,13 +11,17 @@
         </div>
       </div>
     </div>
-    <a href="">确认转入</a>
+    <div class="sure-container">确认转入</div>
+    <div class="agreement"><img src="../../assets/images/yes.png">我已阅读并同意<span>《xxxx服务协议》</span></div>
   </div>
   
 </template>
 <script>
 export default {
   data(){
+    return {
+      
+    }
 
   },
   created(){

@@ -22,6 +22,7 @@ Vue.use(Toast);
   },
   created(){
     
+    
   }
  }
 

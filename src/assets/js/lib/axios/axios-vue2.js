@@ -7,12 +7,16 @@
  */
 
 // 引入 本地的axios文件 文档 https://www.npmjs.com/package/axios
-// require('es6-promise').polyfill();
+
 import axios from "axios"
 // import GlobalPath from '../main'
 import Vue from 'vue'
 import Confirm from '../../../../components/confirm'
 let Base64 = require('js-base64').Base64;
+// let Base64 = require('@js/lib/base64/base64')
+
+
+
 
 Vue.use(Confirm)
 

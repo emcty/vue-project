@@ -26,8 +26,8 @@ module.exports = {
   output: {
     path: path.resolve(outputBase),
     publicPath: DEBUG ? config.dev.publicPath : config.prod.publicPath,
-    filename: 'js/[name].[hash:10].js',
-    chunkFilename: 'js/[name]-[chunkhash:10].js'
+    filename: '[name].[hash:10].js',
+    chunkFilename: '[name]-[chunkhash:10].js'
   },
   recordsPath: path.resolve('.webpack-records.json'),
   resolveLoader:{
@@ -92,7 +92,7 @@ module.exports = {
               {
                 loader: 'url-loader',
                 options: {
-                  limit: 10240,
+                  limit: 10000,
                   name: '[name].[ext]'
                 }
               }
@@ -101,8 +101,8 @@ module.exports = {
               {
                 loader: 'url-loader',
                 options: {
-                  limit: 10240,
-                  name: 'images/[name]-[hash:10].[ext]'
+                  limit: 10000,
+                  name: '[name]-[hash:10].[ext]'
                 }
               },
               {
@@ -125,7 +125,6 @@ module.exports = {
         use: DEBUG
             ? ['vue-style-loader','css-loader','postcss-loader','sass-loader']
             : ExtractTextPlugin.extract({
-                filename:'css/[name]-[chunkhash:10].css',
                 use: 'css-loader?minimize',
                 fallback: ['vue-style-loader','sass-loader']
               })

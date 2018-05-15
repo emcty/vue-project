@@ -15,10 +15,9 @@
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <link href="./static/favicon.ico" rel="shortcut icon">
   <title></title>
-</head>
-<script>
-  (function () {
-    var width = window.meta && window.meta.uiWidth || 750,
+  <script>
+    (function () {
+    var width = window.meta && window.meta.uiWidth || 750,//设计稿宽，默认750px,//设计稿宽度
         pw = parseInt(window.screen.width),
         scale = pw / width,
         u = navigator.userAgent;
@@ -31,11 +30,13 @@
             document.write('<meta name="viewport" content="width=' + width + ',target-densitydpi=device-dpi,user-scalable=no">');
         }
     } else {
+        //适配iphone底部1px白边
         scale = Math.floor(scale * 100) / 100
         document.write('<meta name="viewport" content="width=' + width + ',minimum-scale=' + scale + ',maximum-scale=' + scale + ',target-densitydpi=device-dpi,user-scalable=no">');
     }
 })();
-</script>
+  </script>
+</head>
 <body>
   <div id="app"></div>
 

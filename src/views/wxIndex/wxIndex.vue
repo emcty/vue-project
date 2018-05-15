@@ -2,7 +2,7 @@
   <div class="wx-index-page com-page">
       <div class="wx-user-info">
             <div class="wx-user-photo">
-                <img  :src="data.userInfo.headImgUrl" alt="">
+               
             </div>
             <div class="wx-user-nick-name">{{data.userInfo.nickName}}</div>
             <div class="wx-user-number">工号：{{data.userInfo.userNo}}</div>

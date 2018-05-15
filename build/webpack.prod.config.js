@@ -10,7 +10,6 @@ const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = require('./config');
 const webpackBaseConfig = require('./webpack.base.config');
@@ -33,9 +32,6 @@ module.exports = merge.smart(webpackBaseConfig, {
   plugins: [
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    new BundleAnalyzerPlugin({
-      openAnalyzer: false
-    }),
     new CleanWebpackPlugin([config.outputBase], {
       root: path.resolve('./'),
       verbose: true
@@ -47,7 +43,7 @@ module.exports = merge.smart(webpackBaseConfig, {
       }
     }),
     new ExtractTextPlugin({
-      filename: 'css/style-[chunkhash:10].css',
+      filename: 'style-[chunkhash:10].css',
       allChunks: true
     }),
     new HtmlWebpackPlugin({

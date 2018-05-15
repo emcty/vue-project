@@ -20,7 +20,7 @@ const router = new Router({
         }
     }, 
     {
-        path: "/register", 
+        path: "/register",  //注册登录
         component: function(resolve) {
             require.ensure(['views/register/register'], () => {
                 resolve(require('views/register/register'));
@@ -28,18 +28,21 @@ const router = new Router({
         }
     }, 
     {
-      path: "/fundIn", 
+      path: "/fundIn",  
       component: function(resolve) {
           require.ensure(['views/fundIn/fundIn'], () => {
               resolve(require('views/fundIn/fundIn'));
           }, 'fundIn')
       }
     },
+    {
+      path: "/fundOut",  
+      component: function(resolve) {
+          require.ensure(['views/fundOut/fundOut'], () => {
+              resolve(require('views/fundOut/fundOut'));
+          }, 'fundOut')
+      }
+    },
     ]
 });
-
-router.afterEach(function(to) {
-  document.title = to.meta.docTitle;
-});
-
 export default router;
