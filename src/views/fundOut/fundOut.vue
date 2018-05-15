@@ -9,7 +9,9 @@
     <div class="item"><span>可转出金额</span><em class="card-text">10,122.00元</em></div>
     <div class="item">
       <label for="money">转出金额</label>
-      <input type="tel" id="money" placeholder="今日否可转出10,122.00"><em>元</em>
+      <div class="fund-out">
+        <input type="tel" id="money" placeholder="今日否可转出10,122.00"><em>元</em>
+      </div>
     </div>
     <div class="sure-container">确认转出</div>
     <div class="agreement"><img src="../../assets/images/yes.png">我已阅读并同意<span>《xxxx服务协议》</span></div>
@@ -31,7 +33,7 @@ export default {
   
   data(){
     return {
-      
+
     }
 
   },
