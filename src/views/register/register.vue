@@ -91,7 +91,7 @@
 	        }
 	    },
 	    created() {
-	        
+	        document.title = '注册登录';
 	    },
 	    mounted() {
 	    	this._initFn();//程序入口
@@ -383,5 +383,6 @@
 	}
 </script>
 <style lang="sass">
+	@import '../../assets/css/main.scss';
     @import './register.scss'
 </style>

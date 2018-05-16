@@ -68,7 +68,7 @@
 	        }
 	    },
 	    created() {
-	        
+	        document.title = '我的银行卡';
 	    },
 	    mounted() {
 	    	
@@ -82,5 +82,6 @@
 	}
 </script>
 <style lang="sass">
+    @import '../../assets/css/main.scss';
     @import './myBankCard.scss'
 </style>

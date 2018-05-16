@@ -1,0 +1,486 @@
+[v-cloak] {
+    display: none;
+}
+/*我的银行卡*/
+html,body{
+    width: 100%;
+    height: 100%;
+    background: #f5f7fa;
+    overflow: hidden;
+}
+// .bindCardBox{
+//     width: 670px;
+//     min-height: 100%;
+//     overflow-x: hidden;
+//     padding: 40px 40px 0;
+// }
+// .titleText{
+//     font-size: 24px;
+//     color: #7b899c;
+//     margin-bottom: 30px;
+// }
+// .inputBox{
+//     width: 630px;
+//     height: 226px;
+//     border-radius: 10px;
+//     background: #fff;
+//     padding: 0 20px;
+//     .nameBox, .idBox{
+//         width: 632px;
+//         height: 112px;
+//         line-height: 112px;
+//         font-size: 32px;
+//         color: #233251;
+//         letter-spacing: .5px;
+//         li{
+//             display: inline-block;
+//         }
+//         li:nth-child(1){
+//             font-weight: bold;
+//         }
+//         li:nth-child(2){
+//             float: right;
+//         }
+//     }
+//     .nameBox{
+//         border-bottom: 2px solid #f0f2f7;
+//     }
+//     .queIcon{
+//         width: 34px;
+//         height: 34px;
+//         margin-left: 10px;
+//         vertical-align: middle;
+//         margin-top: -10px;
+//     }
+// }
+/* public Style */
+    .text-ct{
+        text-align: center;
+    }
+    .text-rt{
+        text-align: right;
+    }
+    .block{
+        display: block;
+    }
+    .bank-icon-bg{
+        width: 36px;
+        height: 36px;
+        margin-right: 20px;
+        background: url("../../assets/images/bankLogo.png") no-repeat;
+        background-size: 100% 100%;
+    }
+
+
+/* layout Style */
+.add-card-wrap{
+    position: relative;
+    height: 100%;
+
+    .defend-hint{
+        @extend .text-ct;
+        color: #cbb172;
+        line-height: 70px;
+
+        span{
+            padding-left: 30px;
+            background: url("../../assets/images/icons_defend.png") no-repeat left center;
+        }
+    }
+
+    /* input表格板块样式 */
+    .info-list{
+        padding-left: 40px;
+        background: #fff;
+        font-size: 30px;
+
+        li{
+            height: 100px;
+            padding-right:40px;
+            border-bottom: 1px solid #e5e5e5;
+            &:last-child{
+                border-bottom: none;
+            }
+
+            .line-til{
+                width: 260px;
+                line-height: 1;
+
+                .question-icon{
+                    width: 34px;
+                    height: 34px;
+                    margin-left: 5px;
+                    background: url("../../assets/images/icons_question.png") no-repeat center center;
+                }
+            }
+
+            .line-con{
+                @extend .text-rt;
+                color: #333;
+
+                input{
+                    @extend .block;
+                    @extend .text-rt;
+                    width: 100%;
+                    height: 36px;
+                    line-height: 36px;
+                    color: #333;
+
+                    &::-webkit-input-placeholder{
+                        color: #ccc;
+                    }
+                }
+
+                .clear-card-num{
+                    width: 34px;
+                    height: 34px;
+                    margin-left: 5px;
+                    margin-right: -4px;
+                    background: url("../../assets/images/icons_close.png") no-repeat center center;
+                }
+
+                &.bank-detail{
+                    .bank-icon{
+                        @extend .block;
+                        width: 36px;
+                        margin-right: 10px;
+                    }
+
+                    .bank-limit{
+                        padding-top: 10px;
+                        font-size: 20px;
+                        color: #999;
+                        letter-spacing: 1px;
+                    }
+                }
+
+                .arrow-icon{
+                    width: 22px;
+                    height: 23px;
+                    padding-left: 14px;
+                    background: url("../../assets/images/icons_arrow.png") no-repeat center right;
+                }
+
+                .get-sms-code{
+                    @extend .text-ct;
+                    position: relative;
+                    width: 170px;
+                    height: 36px;
+                    padding-left: 18px;
+                    line-height: 36px;
+                    color: #d3a437;
+
+                    &:before{
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        width: 1px;
+                        height: 50px;
+                        background: #e5e5e5;
+                        transform: translateY(-50%);
+                    }
+
+                    &.gray{
+                        color: #ccc;
+                    }
+                }
+
+                .sms-code{
+                    margin-right: 18px;
+                }
+
+                .select-bank-card-hint{
+                    color: #ccc;
+                }
+            }
+        }
+    }
+
+    .bank-info-til{
+        padding: 10px 40px 0;
+        line-height: 60px;
+        color: #999;
+
+        .look-bank-list{
+            @extend .text-rt;
+            color: #c8a556;
+
+            &:active{
+                opacity: .8;
+            }
+        }
+    }
+
+    /* 确认按钮板块样式 */
+    .comfirm-box{
+        margin-bottom: 26px;
+        padding-top: 90px;
+
+        .comfirm-hint{
+            @extend .text-ct;
+            padding-bottom: 20px;
+            font-size: 20px;
+            color: #ccc;
+        }
+
+        .comfirm-btn{
+            @extend .pub-btn;
+        }
+    }
+
+    /* 协议文本样式 */
+    .agreement-text{
+        padding: 0 130px;
+        font-size: 22px;
+        line-height: 1.5;
+        color: #999;
+
+        .pub-radio-btn{
+            display: inline-block;
+            margin-right: 10px;
+            transform: translateY(4px);
+        }
+
+        span{
+            color: #927d51;
+        }
+    }
+
+    /* 奕丰金融提示 */
+    .pub-yifeng-hint-text{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 120px 0 40px;
+    }
+    /* 媒体适配样式 */
+    @media (min-aspect-ratio: 60/100) {
+        .pub-yifeng-hint-text.step-2{
+            position: static;
+        }
+    }
+
+    /* 支持的银行卡样式 */
+    .support-bank {
+        @extend .float-layer;
+
+        .support-bank-dialog {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 70%;
+            height: 800px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transform: translate(-50%, -50%);
+
+            h3{
+                @extend .text-ct;
+                position: relative;
+                padding: 30px 0 20px;
+                border-bottom: 1px solid #e5e5e5;
+                font-size: 30px;
+                color: #333;
+                line-height:1;
+
+                .close-btn{
+                    position: absolute;
+                    right: 20px;
+                    top: 28px;
+                    width: 32px;
+                    height: 32px;
+                    background: url("../../assets/images/closeBtn.png") no-repeat;
+                    background-size: 100% 100%;
+                }
+            }
+
+            .support-bank-cont{
+                position: relative;
+                height: 650px;
+                overflow: hidden;
+
+                .support-bank-item{
+                    position: relative;
+                    height: 100px;
+                    padding-left: 40px;
+
+                    &:active{
+                        background: #e5e5e5;
+                    }
+
+                    dl{
+                        height: 100%;
+                        border-bottom: 1px solid #e5e5e5;
+                    }
+
+                    &:last-child{
+                        dl{
+                            border-bottom: none;
+                        }
+                    }
+
+                    .bank-icon{
+                        @extend .block;
+                        width: 36px;
+                        margin-right: 20px;
+                    }
+
+                    .bank-name{
+                        margin-bottom: 5px;
+                        font-size: 26px;
+                        color: #333;
+                    }
+
+                    .bank-limit{
+                        font-size: 20px;
+                        color: #999;
+                    }
+                }
+            }
+
+            .more-bank{
+                @extend .text-ct;
+                border-top: 1px solid #e5e5e5;
+                line-height: 66px;
+                font-size: 20px;
+                color: #999;
+            }
+        }
+    }
+
+    /* 选择银行卡列表样式 */
+    .select-bank-float{
+        @extend .float-layer;
+
+        .select-bank-box{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            background: #fff;
+
+            &.select-bank-animate{
+                height: 870px;
+            }
+
+            .select-bank-title{
+                position: relative;
+                width: 100%;
+                height: 70px;
+                padding: 0 40px;
+                background: #f5f5f5;
+                font-size: 24px;
+                color: #666;
+
+                span{
+                    @extend .block;
+                    font-size: 36px;
+                    color: #c8a556;
+
+                    &:active{
+                        opacity: .8;
+                    }
+                }
+            }
+
+            .select-bank-iscroll{
+                position: relative;
+                width: 100%;
+                height: 800px;
+                background: #fff;
+
+                .bank-list-item{
+                    &:active{
+                        background: #e5e5e5;
+                    }
+
+                    dl{
+                        margin-left: 40px;
+                        height: 100px;
+                        border-bottom: 1px solid #e5e5e5;
+
+                        .bank-icon{
+                            @extend .block;
+                            width: 36px;
+                            margin-right: 20px;
+                        }
+
+                        .bank-name{
+                            margin-bottom: 10px;
+                            font-size: 26px;
+                            color: #333;
+                        }
+
+                        .bank-limit{
+                            font-size: 20px;
+                            color:#999;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* 公共的按钮 */
+.pub-btn{
+    width: 600px;
+    height: 90px;
+    margin: 0 auto;
+    border-radius: 104px;
+    background: -webkit-linear-gradient(top, #fcecd2, #dfb26d);
+    box-shadow: 0 4px 8px rgba(214, 153, 28, .4);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, .8);
+    font-size: 40px;
+    color: #482305;
+    letter-spacing: 4px;
+    text-indent: 8px;
+    text-align: center;
+    line-height: 90px;
+
+    &.gray, &.gray:active{
+        background: -webkit-linear-gradient(top, #ededec, #b2b3b3);
+        box-shadow: 0 4px 8px rgba(102, 102, 102, .4);
+        color: #999;
+    }
+
+    &:active{
+        background: -webkit-linear-gradient(top, #f3dba7, #c4a156);
+    }
+}
+
+/* 公共的确认同意协议的radio按钮 */
+.pub-radio-btn{
+    width: 25px;
+    height: 24px;
+    // background: url("~@image/common/radio_icons.png") no-repeat;
+    background-size: 100% 200%;
+    background-position: 0 100%;
+
+    &.cur{
+        background-position: 0 0;
+    }
+}
+
+/* 公共的浮层 */
+.float-layer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, .4);
+
+    .float-box{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
