@@ -7,7 +7,9 @@ process.env.NODE_ENV = 'production';
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = require('./config');
 const webpackBaseConfig = require('./webpack.base.config');
@@ -27,17 +29,10 @@ const imageWebpack = {
 }
 
 module.exports = merge.smart(webpackBaseConfig, {
-  module: {
-    loaders: [
-      {
-        test: /\.(?:png|jpe?g|gif|svg)$/,
-        loaders: [`image-webpack?${JSON.stringify(imageWebpack)}`]
-      }
-    ]
-  },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(true),
-    new CleanWebpackPlugin([outputBase], {
+    new CleanWebpackPlugin([config.outputBase], {
       root: path.resolve('./'),
       verbose: true
     }),
@@ -47,7 +42,10 @@ module.exports = merge.smart(webpackBaseConfig, {
         warnings: false
       }
     }),
-    new webpack.optimize.DedupePlugin(),
+    new ExtractTextPlugin({
+      filename: 'style-[chunkhash:10].css',
+      allChunks: true
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(config.inputBase, 'index.html'),
