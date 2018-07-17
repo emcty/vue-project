@@ -2,7 +2,6 @@
 'use strict';
 
 module.exports = {
-  title: '天天房东h5',
   inputBase: './src',
   outputBase: './dist',
   prod: {
