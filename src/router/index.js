@@ -10,9 +10,6 @@ const router = new Router({
   },
   routes: [{
       path: "/",
-      meta: {
-          docTitle: "趣享卡",
-      }
   },
   {
       path: "/wxIndex",
@@ -21,10 +18,6 @@ const router = new Router({
               resolve(require('wxPage/wxIndex/wxIndex'));
           }, 'wxIndex')
       },
-      meta: {
-          docTitle: "趣享卡",
-
-      }
   }]
 });
 
