@@ -15,19 +15,30 @@ const inputBase = config.inputBase;
 const port = config.dev.port;
 const mockPort = config.dev.mock.port;
 
+process.noDeprecation = true;
+
 let compiler = webpack(merge.smart(webpackBaseConfig, {
   entry: {
-    app: [
+    main: [
       'webpack-dev-server/client?/',
       'webpack/hot/only-dev-server'
     ]
   },
   cache: true,
-  debug: true,
   devtool: 'cheap-module-inline-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      children: true,
+      minChunks: 2
+    }),
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor','manifest'],
+      minChunks: Infinity
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(config.inputBase, 'index.html'),
@@ -48,7 +59,7 @@ const server = new WebpackDevServer(compiler, {
     children: false
   },
   proxy: {
-    '/api/*': {
+    '/wap/*': {
       target: `http://localhost:${mockPort}/`,
       secure: false
     },
