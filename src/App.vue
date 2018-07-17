@@ -5,16 +5,19 @@
 </template>
 
 <script>
+
 import Vue from 'vue';
 import Alert from 'components/alert';
 import Toast from 'components/Toast';
-import axios from 'assets/js/lib/axios/axios-vue2.js';
+import axios from 'assets/js/lib/axios/axios-vue';
 import Confirm from 'components/confirm';
 import fastclick from 'fastclick';
-Vue.use(axios);
+
 Vue.use(Alert);
 Vue.use(Toast);
 Vue.use(Confirm);
+
+
 
 
  export default {
@@ -30,11 +33,5 @@ Vue.use(Confirm);
 </script>
 
 
-<style lang="scss" >
-  .page-container {
-    height: 100%;
-    min-height: 100%;
-  }
-</style>
 
 

@@ -1,7 +1,13 @@
+html,body{
+    width: 100%;
+    height: auto;
+    background: #fff;
+    overflow-x:hidden;
+}
 .detail-container{
   font-size: 32px;
   .detail-info{
-    padding: 24px 96px 0;
+    padding: 60px 96px 0;
   }
   .detail-process{
     float: left;
@@ -44,4 +50,15 @@
     width: 670px;
     height: 180px;
   }
+}
+.clearfix:after{
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.loading{
+  width: 100%;
+  margin: 100px auto 0;
+  text-align: center;
 }

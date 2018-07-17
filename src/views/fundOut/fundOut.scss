@@ -1,13 +1,18 @@
+html,body{
+    width: 100%;
+    height: auto;
+    background: #fff;
+    overflow-x:hidden;
+}
 .form-container{
   font-size: 32px;
   padding: 24px 48px;
   color: #2f394e;
   .item{
     height: 130px;
-    line-height: 130px;
+    line-height: 126px;
     border-bottom: 1px solid #f0f2f7;
     label,span{
-      width: 242px;
       vertical-align: middle;
       display: inline-block;
     }
@@ -17,13 +22,15 @@
     input{
       border: 0;
       margin: 0 14px 0 0;
-      width: 358px;
+      width: 400px; //解决iphoneX显示不全问题
       font-size: 32px;
-      color: #b9c1ca;
+      line-height: 36px;
       vertical-align: middle;
+      text-align: right;
     }
     em{
       vertical-align: middle;
+      font-style: normal;
     }
     .card-text{
       float: right;
@@ -34,29 +41,52 @@
       float: left;
     }
   }
+  .error {
+    color: #ed2c50;
+    font-size: 24px;
+    padding-top: 20px;
+  }
   .sure-container{
     width: 558px;
     height: 88px;
     line-height: 88px;
-    background: #ed2c50;
+    background: #d4d7de;
     color: #fff;
     font-weight: 700;
     margin: 100px auto 36px;
     text-align: center;
     border-radius: 60px;
     font-size: 34px;
-    box-shadow: 0 12px 38px rgba(237,44,80,.3);
+    box-shadow: 0 12px 38px rgba(182, 193, 219, .3);
+    &.active {
+      background: #ed2c50;
+      box-shadow: 0 12px 38px rgba(237, 44, 80, .3);
+      &:active {
+        background-color: #df274a;
+      }
+    }
   }
   .agreement{
     text-align: center;
     color: #b9c1ca;
     font-size: 24px;
-    img{
-      vertical-align: middle;
+    .radio{
+      display: inline-block;
+      width: 34px;
+      height: 34px;
       margin-right: 12px;
+      vertical-align: middle;
+      cursor: pointer;
+      background-image: url("./images/agreeIcon.png");
+      &.disactive{
+        background-image: url("./images/agreeActive.png");
+      }
     }
-    span{
+    span {
       color: #788da9;
+      a{
+        color: inherit;
+      }
     }
   }
   .tips-container{
@@ -83,4 +113,15 @@
       }
     }
   }
+}
+
+input::-webkit-input-placeholder{
+  color: #b9c1ca;
+}
+
+
+.loading{
+  width: 100%;
+  margin: 100px auto 0;
+  text-align: center;
 }

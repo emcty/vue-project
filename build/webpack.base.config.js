@@ -44,7 +44,12 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+			// '@components': path.resolve(__dirname, '../src/components'),
+			// '@css': path.resolve(__dirname, '../src/assets/css'),
+			// '@js': path.resolve(__dirname, '../src/assets/js'),
+			// '@image': path.resolve(__dirname, '../src/assets/images'),
+			// '@fonts': path.resolve(__dirname, '../src/assets/fonts'),
     }
   },
   module: {
