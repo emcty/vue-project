@@ -1,3 +1,0 @@
-{
-  "watch": ["middlewares/", "models/", "controllers/", "services/", "server.js", "common"]
-}
