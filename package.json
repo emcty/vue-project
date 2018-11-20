@@ -1,7 +1,5 @@
 {
-  "name": "ttfd",
   "version": "1.0.0",
-  "description": "ttfd project.",
   "engines": {
     "node": ">=4.0.0"
   },
@@ -11,12 +9,10 @@
     "mock": "nodemon --watch mock build/mock-server.js"
   },
   "repository": {
-    "type": "git",
-    "url": "http://gitlab.jianlc.tp/fe/ttfd-h5.git"
   },
   "author": {
     "name": "dinglei",
-    "email": "dinglei@jianlc.com"
+    "email": "emcty1227@163.com"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
